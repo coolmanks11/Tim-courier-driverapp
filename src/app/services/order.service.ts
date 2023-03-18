@@ -35,4 +35,30 @@ export class OrderService {
     const orderRef = doc(this.firestore,`orders/${orderId}`);
     return docData(orderRef, {idField:'order_id'}) as Observable<Order>
   }
+  async acceptOrderByDriverId(order_id: string, driver_id: string): Promise<string | void> {
+    const orderRef = doc(this.firestore, `orders/${order_id}`);
+  
+    try {
+      const orderSnapshot = await getDoc(orderRef);
+  
+      if (!orderSnapshot.exists()) {
+        return 'Order not found';
+      }
+  
+      const orderData = orderSnapshot.data() as Order;
+  
+      if (orderData.driver_id) {
+        return 'Order already has a driver assigned';
+      }
+  
+      await updateDoc(orderRef, {
+        status: 'collecting parcel',
+        driver_id: driver_id
+      });
+    } catch (error) {
+      console.error("Error updating order: ", error);
+      return 'Error updating order';
+    }
+  }
+  
 }
