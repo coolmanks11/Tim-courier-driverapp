@@ -14,7 +14,18 @@ export class ListOrdersPage implements OnInit {
   ngOnInit() {
     this.getOrderByStatus('In progress');
   }
-  
+
+  onIonViewDidEnter():void{
+    this.getOrderByStatus('In progress');
+    
+  }
+  handleRefresh(event:any) {
+    setTimeout(() => {
+      // Any calls to load data go here
+      this.getOrderByStatus('In progress');
+      event.target.complete();
+    }, 2000);
+  };
   getOrderByStatus(status : string){
     this.orderservice.getOrdersByStatus(status).subscribe(
       orders => {
