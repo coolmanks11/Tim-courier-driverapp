@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Update</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="orderDetails">
+    <ion-card-header>
+      <ion-text> <strong>Order Id</strong> {{orderDetails.order_id}}</ion-text>
+    </ion-card-header>
+    <ion-card-content>
+
+      <ion-text><strong>PICK UP</strong></ion-text>
+      <br>
+      <ion-text>{{orderDetails.pickup.pick_recipient_name}}</ion-text>
+      <br>
+      <ion-text>{{orderDetails.pickup.pick_recipient_address}}</ion-text>
+      <hr>
+      
+      <ion-text><strong>DROP OFF</strong></ion-text>
+      <br>
+      <ion-text>{{orderDetails.dropoff.drop_recipient_name}}</ion-text>
+      <br>
+      <ion-text>{{orderDetails.dropoff.drop_recipient_address}}</ion-text>
+      <hr>
+
+      <ion-label><strong>Distance</strong></ion-label>
+      <br>
+      <ion-text>{{orderDetails.distance_KM}} KM</ion-text>  
+
+      <hr>
+      <ion-label>Delivery Mode:</ion-label>
+      <br>
+      <ion-text>{{orderDetails.delivery_mode}}</ion-text>
+      <hr>
+
+      <ion-label><strong>Current status : </strong>{{orderDetails.status}}</ion-label>
+      <ion-select [(ngModel)]="statusOption" interface="action-sheet" placeholder="update status" >
+        <ion-select-option value="delivering parcel">delivering parcel</ion-select-option>
+        <ion-select-option value="delivered parcel">delivered parcel</ion-select-option>
+      </ion-select>
+    </ion-card-content>
+    <ion-button (click)='updateOrderStatus()' fill="clear">update</ion-button>
+  </ion-card>
+</ion-content>

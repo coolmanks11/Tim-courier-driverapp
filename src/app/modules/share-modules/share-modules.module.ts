@@ -4,15 +4,15 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 
 import {NavPreviousBtnComponent} from '../../components/nav-previous-btn/nav-previous-btn.component'
-
+import { TabMenuComponent } from 'src/app/components/tab-menu/tab-menu.component';
 
 @NgModule({
-  declarations: [NavPreviousBtnComponent],
+  declarations: [NavPreviousBtnComponent,TabMenuComponent],
   imports: [
     CommonModule,
     IonicModule,
     FormsModule,  
   ],
-  exports:[NavPreviousBtnComponent]
+  exports:[NavPreviousBtnComponent,TabMenuComponent]
 })
 export class ShareModulesModule { }

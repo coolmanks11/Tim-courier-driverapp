@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>History</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list *ngIf="driverOrders">
+    <div *ngFor="let order of driverOrders">
+      <!-- do if else delivered disable button -->
+      <ion-item *ngIf="order.status!='delivered parcel'; else elseBlock" button detail="true"
+        [routerLink]="['/update-order-status/', order.order_id]">
+        <ion-label>
+          <h3>{{order.order_id}}</h3>
+          <p>Status : {{order.status}}</p>
+          <p>Pick up : {{order.pick_up_time}}</p>
+        </ion-label>
+      </ion-item>
+
+      <ng-template #elseBlock>
+        <ion-item disabled="true" button detail="true" [routerLink]="['/update-order-status/', order.order_id]">
+          <ion-label>
+            <h3>{{order.order_id}}</h3>
+            <p>Status : {{order.status}}</p>
+            <p>Pick up : {{order.pick_up_time}}</p>
+          </ion-label>
+        </ion-item>
+      </ng-template>
+    </div>
+  </ion-list>
+</ion-content>

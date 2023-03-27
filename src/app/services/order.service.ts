@@ -35,6 +35,11 @@ export class OrderService {
     const orderRef = doc(this.firestore,`orders/${orderId}`);
     return docData(orderRef, {idField:'order_id'}) as Observable<Order>
   }
+  getOrdersByDriverId(driverId: string): Observable<Order[]> {
+  const orderRef = collection(this.firestore, 'orders');
+  const ordersByDriverQuery = query(orderRef, where('driver_id', '==', driverId));
+  return collectionData(ordersByDriverQuery, { idField: 'order_id' }) as Observable<Order[]>;
+}
   async acceptOrderByDriverId(order_id: string, driver_id: string): Promise<string | void> {
     const orderRef = doc(this.firestore, `orders/${order_id}`);
   
@@ -54,6 +59,24 @@ export class OrderService {
       await updateDoc(orderRef, {
         status: 'collecting parcel',
         driver_id: driver_id
+      });
+    } catch (error) {
+      console.error("Error updating order: ", error);
+      return 'Error updating order';
+    }
+  }
+  async updateOrderStatus(orderId: string, status: string): Promise<string | void> {
+    const orderRef = doc(this.firestore, `orders/${orderId}`);
+    
+    try {
+      const orderSnapshot = await getDoc(orderRef);
+    
+      if (!orderSnapshot.exists()) {
+        return 'Order not found';
+      }
+    
+      await updateDoc(orderRef, {
+        status: status
       });
     } catch (error) {
       console.error("Error updating order: ", error);

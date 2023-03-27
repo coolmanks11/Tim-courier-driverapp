@@ -27,6 +27,18 @@ const routes: Routes = [
     path: 'order-details/:id',
     loadChildren: () => import('./pages/order-details/order-details.module').then( m => m.OrderDetailsPageModule)
   },
+  {
+    path: 'driver-orders',
+    loadChildren: () => import('./pages/driver-orders/driver-orders.module').then( m => m.DriverOrdersPageModule)
+  },
+  {
+    path: 'update-order-status',
+    loadChildren: () => import('./pages/update-order-status/update-order-status.module').then( m => m.UpdateOrderStatusPageModule)
+  },
+  {
+    path: 'update-order-status/:orderId',
+    loadChildren: () => import('./pages/update-order-status/update-order-status.module').then( m => m.UpdateOrderStatusPageModule)
+  },
 ];
 
 @NgModule({

@@ -12,7 +12,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import {provideAuth,getAuth} from '@angular/fire/auth';
-
+import { ShareModulesModule } from './modules/share-modules/share-modules.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
@@ -20,6 +20,7 @@ import {provideAuth,getAuth} from '@angular/fire/auth';
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
     provideStorage(() => getStorage()),
+    ShareModulesModule
   
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
