@@ -19,7 +19,7 @@
       </ion-item>
 
       <ng-template #elseBlock>
-        <ion-item disabled="true" button detail="true" [routerLink]="['/update-order-status/', order.order_id]">
+        <ion-item style="background-color: aquamarine;" disabled="true" button detail="true" [routerLink]="['/update-order-status/', order.order_id]">
           <ion-label>
             <h3>{{order.order_id}}</h3>
             <p>Status : {{order.status}}</p>

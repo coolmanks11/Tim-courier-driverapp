@@ -19,11 +19,17 @@ import {
   getDocs
 } from '@angular/fire/firestore';
 import { Driver } from '../DTO/Driver'
+import { Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private auth: Auth, private firestore: Firestore) { }
+  constructor(private auth: Auth, private firestore: Firestore,private router: Router) { }
+  
+
   async login(email: string, password: string) {
     try {
       const user = await signInWithEmailAndPassword(this.auth, email, password);
@@ -52,7 +58,6 @@ export class AuthService {
   }
   getCurrentUser() {
     console.log(this.auth.currentUser);
-
     return this.auth.currentUser;
   }
 }
