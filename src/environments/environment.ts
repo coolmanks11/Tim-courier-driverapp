@@ -4,7 +4,7 @@
 
 
 export const environment = {
-  production: false,
+  production: true,
   firebaseConfig : {
     apiKey: "AIzaSyC1cSzzEIK9P72mMc_nVv9yX1kDjPCLqek",
     authDomain: "courier-app-tim.firebaseapp.com",
